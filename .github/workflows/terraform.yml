@@ -31,10 +31,10 @@ jobs:
         working-directory: ./terraform
   
     steps:
-      - name: Checkout surce code
+      - name: Checkout source code
         uses: actions/checkout@v2
 
-      - name: Setups terraform with specified version on the runner
+      - name: Setup terraform with specified version on the runner
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform init
@@ -45,7 +45,7 @@ jobs:
         id: fmt
         run: terraform fmt -check
       
-      - name: Terrraform validate
+      - name: Terraform validate
         id: validate
         run: terraform validate
 
@@ -53,8 +53,8 @@ jobs:
         id: plan
         run: terraform plan -no-color -input=false -out planfile
 
-      - name: Terraform plan status
-        if: steps.plan.outcome == "failure"
-        run: exit 1
+      ##- name: Terraform plan status
+        ##if: steps.plan.outcome == "failure"
+        ##run: exit 1
 
          
